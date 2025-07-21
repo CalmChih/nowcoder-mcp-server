@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: nowcode-mcp-server
+  ai:
+    mcp:
+      server:
+        name: ${spring.application.name}
+        version: 1.0.0
+        instructions: 牛客网面经搜索工具
+        stdio: true
+  main:
+    web-application-type: none
+
+server:
+  port: 10089
