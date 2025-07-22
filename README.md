@@ -34,18 +34,19 @@ NowCoder MCP Server 是一个基于 Spring Boot 的后端服务，集成了 Spri
 stdio模式:
 ```json
 {
-  "mcpServers": {
-    "nowcoder-mcp-server": {
-      "command": "java",
-      "args": [
-        "-jar",
-        "<你的jar包地址>/nowcoder-mcp-server-1.0.0.jar",
-         "--server.port=10088",
-         "--spring.main.web-application-type=none",
-         "--logging.pattern.console="
-      ]
-    }
-  }
+   "mcpServers": {
+      "nowcoder-mcp-server": {
+         "command": "java",
+         "args": [
+            "-jar",
+            "<你的jar包地址>/nowcoder-mcp-server-1.0.0.jar",
+            "--server.port=10088",
+            "--spring.main.web-application-type=none",
+            "--spring.ai.mcp.server.stdio=true",
+            "--logging.pattern.console="
+         ]
+      }
+   }
 }
 ```
 sse模式:
