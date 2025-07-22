@@ -31,6 +31,7 @@ NowCoder MCP Server 是一个基于 Spring Boot 的后端服务，集成了 Spri
 3. 默认配置请参考 `src/main/resources/application.yml`
 
 ## 在 Claude 等平台中配置 MCP 服务
+stdio模式:
 ```json
 {
   "mcpServers": {
@@ -38,8 +39,22 @@ NowCoder MCP Server 是一个基于 Spring Boot 的后端服务，集成了 Spri
       "command": "java",
       "args": [
         "-jar",
-        "<你的jar包地址>/nowcoder-mcp-server-1.0.0.jar"
+        "<你的jar包地址>/nowcoder-mcp-server-1.0.0.jar",
+         "--server.port=10088",
+         "--spring.main.web-application-type=none",
+         "--logging.pattern.console="
       ]
+    }
+  }
+}
+```
+sse模式:
+```json
+{
+  "mcpServers": {
+    "nowcoder-mcp-server": {
+      "type": "sse",
+      "url": "http://<你部署的地址>/sse"
     }
   }
 }

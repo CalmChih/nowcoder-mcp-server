@@ -7,9 +7,15 @@ spring:
         name: ${spring.application.name}
         version: 1.0.0
         instructions: 牛客网面经搜索工具
-        stdio: true
-  main:
-    web-application-type: none
+#  main:
+#    banner-mode: off
+#    web-application-type: none
+
+logging:
+  file:
+    name: data/log/${spring.application.name}.log
+#  pattern:
+#    console:
 
 server:
-  port: 10089
+  port: 10088

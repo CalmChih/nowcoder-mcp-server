@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -20,7 +22,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class FaceWarpSearchResponseDTO {
+public class FaceWarpSearchResponseDTO implements Serializable {
+    
+    @Serial
+    private static final long serialVersionUID = -775213603624972465L;
     
     @JsonPropertyDescription("请求是否成功返回")
     private Boolean success;
@@ -39,7 +44,7 @@ public class FaceWarpSearchResponseDTO {
     @NoArgsConstructor
     @Builder
     @JsonIgnoreProperties(ignoreUnknown = true)
-    static class Data {
+    public static class Data {
         
         @JsonPropertyDescription("当前页码")
         private Integer current;
@@ -61,7 +66,7 @@ public class FaceWarpSearchResponseDTO {
         @NoArgsConstructor
         @Builder
         @JsonIgnoreProperties(ignoreUnknown = true)
-        static class Record {
+        public static class Record {
             
             private RecordData data;
             
@@ -70,7 +75,7 @@ public class FaceWarpSearchResponseDTO {
             @NoArgsConstructor
             @Builder
             @JsonIgnoreProperties(ignoreUnknown = true)
-            static class RecordData {
+            public static class RecordData {
                 
                 @JsonProperty("momentData")
                 @JsonAlias({"momentData", "contentData"})
@@ -82,7 +87,7 @@ public class FaceWarpSearchResponseDTO {
                 @NoArgsConstructor
                 @Builder
                 @JsonIgnoreProperties(ignoreUnknown = true)
-                static class MomentData {
+                public static class MomentData {
                     
                     @JsonPropertyDescription("文章标题，可能包含岗位以及公司名称")
                     private String title;

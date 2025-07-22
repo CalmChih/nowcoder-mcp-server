@@ -6,9 +6,11 @@ import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.stereotype.Service;
 import top.chih.mcp.server.nowcoder.domain.adapter.INowCoderPort;
 import top.chih.mcp.server.nowcoder.domain.model.FaceWarpSearchRequest;
+import top.chih.mcp.server.nowcoder.domain.model.FaceWarpSearchResponse;
 import top.chih.mcp.server.nowcoder.infrastructure.gateway.dto.FaceWarpSearchResponseDTO;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author chih
@@ -23,8 +25,16 @@ public class NowCoderService {
     private INowCoderPort nowCoderPort;
     
     @Tool(description = "牛客网面经搜索，根据用户想要查找的面经进行搜索，模糊匹配返回对应的文章")
-    public FaceWarpSearchResponseDTO faceWarpSearch(FaceWarpSearchRequest faceWarpSearchRequest) throws IOException {
-        return nowCoderPort.faceWarpSearch(faceWarpSearchRequest);
+    public FaceWarpSearchResponse faceWarpSearch(FaceWarpSearchRequest faceWarpSearchRequest) throws IOException {
+        FaceWarpSearchResponseDTO responseDTO = nowCoderPort.faceWarpSearch(faceWarpSearchRequest);
+        FaceWarpSearchResponseDTO.Data data = responseDTO.getData();
+        List<FaceWarpSearchResponseDTO.Data.Record> records = data.getRecords();
+        List<FaceWarpSearchResponse.Record> list = records.stream()
+                .map(record -> FaceWarpSearchResponse.Record.builder()
+                        .title(record.getData().getMomentData().getTitle())
+                        .content(record.getData().getMomentData().getContent()).build()).toList();
+        return FaceWarpSearchResponse.builder().current(data.getCurrent()).size(data.getSize())
+                .total(data.getTotal()).totalPage(data.getTotalPage()).records(list).build();
     }
     
 }

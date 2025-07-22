@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,7 +24,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class FaceWarpSearchRequestDTO {
+public class FaceWarpSearchRequestDTO implements Serializable {
+    
+    @Serial
+    private static final long serialVersionUID = -6791788547916598034L;
     
     @JsonProperty(required = true)
     @JsonPropertyDescription("默认为all，不需要变更")
