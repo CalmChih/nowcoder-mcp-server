@@ -40,7 +40,6 @@ stdio模式:
          "args": [
             "-jar",
             "<你的jar包地址>/nowcoder-mcp-server-1.0.0.jar",
-            "--server.port=10088",
             "--spring.main.web-application-type=none",
             "--spring.ai.mcp.server.stdio=true",
             "--logging.pattern.console="
