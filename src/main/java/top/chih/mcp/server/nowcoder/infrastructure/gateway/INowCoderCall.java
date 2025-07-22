@@ -14,9 +14,7 @@ import top.chih.mcp.server.nowcoder.infrastructure.gateway.dto.FaceWarpSearchRes
  */
 public interface INowCoderCall {
     
-    @Headers({
-            "Cookie: acw_tc=0a18aad417531631019061947e3d472f0a5e4cb3ffb0d6fc80113ba1def661; NOWCODERCLINETID=987A72146E34F8F0C79816E58DAF8008; NOWCODERUID=721bfaaf6d864a34abf3851e882e3a70",
-            "Content-Type: application/json", "Accept: */*", "Host: gw-c.nowcoder.com", "Connection: keep-alive"})
+    @Headers({"Content-Type: application/json; charset=UTF-8"})
     @POST("pc/search")
     Call<FaceWarpSearchResponseDTO> faceWarpSearch(@Body FaceWarpSearchRequestDTO request);
     

@@ -19,3 +19,8 @@ logging:
 
 server:
   port: 10088
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true

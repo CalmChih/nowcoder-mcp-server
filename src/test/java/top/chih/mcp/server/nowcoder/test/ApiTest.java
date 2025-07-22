@@ -29,7 +29,7 @@ public class ApiTest {
     
     @Test
     public void test_faceWarpSearch() throws IOException {
-        String json = "{\"page\": 1," + "    \"query\": \"java后端面经\"" + "  }";
+        String json = "{\"page\": 1," + "    \"query\": \"Java后端面经\"" + "  }";
         ObjectMapper objectMapper = new ObjectMapper();
         FaceWarpSearchRequest faceWarpSearchRequest = objectMapper.readValue(json, FaceWarpSearchRequest.class);
         FaceWarpSearchResponse responseDTO = nowCoderService.faceWarpSearch(faceWarpSearchRequest);

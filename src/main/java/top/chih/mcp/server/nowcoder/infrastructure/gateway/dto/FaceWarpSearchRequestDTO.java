@@ -35,23 +35,19 @@ public class FaceWarpSearchRequestDTO implements Serializable {
     
     @Getter
     @Setter
-    @JsonProperty(required = true)
     @JsonPropertyDescription("想要查询的消息，最好带上面经两个字，能够更加准确，例如：Java后端面经")
     private String query;
     
     @Getter
     @Setter
-    @JsonProperty(required = true)
     @JsonPropertyDescription("当前页码，从1开始")
     private Integer page;
     
-    @JsonProperty(required = true)
     @JsonPropertyDescription("""
             默认标签列表，列表内仅有一个Tag对象，为{"name": "面经","id": 818, "count": null}，对象字段必须完整，且值不允许变更
             """)
     private final List<Tag> tag = Collections.singletonList(new Tag());
     
-    @JsonProperty(required = true)
     @JsonPropertyDescription("排序方式，默认为create，不需要变更")
     private final String order = "create";
     
