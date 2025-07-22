@@ -7,8 +7,8 @@ spring:
         name: ${spring.application.name}
         version: 1.0.0
         instructions: 牛客网面经搜索工具
-#  main:
-#    banner-mode: off
+  main:
+    banner-mode: off
 #    web-application-type: none
 
 logging:
