@@ -39,11 +39,32 @@ stdio模式:
          "command": "java",
          "args": [
             "-jar",
+            "-Dfile.encoding=UTF-8",
             "<你的jar包地址>/nowcoder-mcp-server-1.0.0.jar",
             "--spring.main.web-application-type=none",
             "--spring.ai.mcp.server.stdio=true",
             "--logging.pattern.console="
          ]
+      }
+   }
+}
+```
+或者
+```json
+{
+   "mcpServers": {
+      "nowcoder-mcp-server": {
+         "command": "java",
+         "args": [
+            "-jar",
+            "D:/Downloads/nowcoder-mcp-server-1.0.0.jar",
+            "--spring.main.web-application-type=none",
+            "--spring.ai.mcp.server.stdio=true",
+            "--logging.pattern.console="
+         ],
+         "env": {
+            "JAVA_TOOL_OPTIONS": "-Dfile.encoding=UTF-8"
+         }
       }
    }
 }

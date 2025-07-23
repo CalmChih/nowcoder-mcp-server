@@ -10,6 +10,7 @@ import top.chih.mcp.server.nowcoder.domain.model.FaceWarpSearchResponse;
 import top.chih.mcp.server.nowcoder.infrastructure.gateway.dto.FaceWarpSearchResponseDTO;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,13 +29,19 @@ public class NowCoderService {
     public FaceWarpSearchResponse faceWarpSearch(FaceWarpSearchRequest faceWarpSearchRequest) throws IOException {
         FaceWarpSearchResponseDTO responseDTO = nowCoderPort.faceWarpSearch(faceWarpSearchRequest);
         FaceWarpSearchResponseDTO.Data data = responseDTO.getData();
+        FaceWarpSearchResponse.FaceWarpSearchResponseBuilder faceWarpSearchResponseBuilder = FaceWarpSearchResponse.builder()
+                .current(data.getCurrent()).size(data.getSize()).total(data.getTotal()).totalPage(data.getTotalPage());
         List<FaceWarpSearchResponseDTO.Data.Record> records = data.getRecords();
-        List<FaceWarpSearchResponse.Record> list = records.stream()
-                .map(record -> FaceWarpSearchResponse.Record.builder()
-                        .title(record.getData().getMomentData().getTitle())
-                        .content(record.getData().getMomentData().getContent()).build()).toList();
-        return FaceWarpSearchResponse.builder().current(data.getCurrent()).size(data.getSize())
-                .total(data.getTotal()).totalPage(data.getTotalPage()).records(list).build();
+        if (null != records && !records.isEmpty()) {
+            List<FaceWarpSearchResponse.Record> list = records.stream()
+                    .map(record -> FaceWarpSearchResponse.Record.builder()
+                            .title(record.getData().getMomentData().getTitle())
+                            .content(record.getData().getMomentData().getContent()).build()).toList();
+            faceWarpSearchResponseBuilder.records(list);
+        } else {
+            faceWarpSearchResponseBuilder.records(new ArrayList<>());
+        }
+        return faceWarpSearchResponseBuilder.build();
     }
     
 }
